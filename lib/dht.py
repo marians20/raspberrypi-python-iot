@@ -2,11 +2,18 @@ import adafruit_dht
 import threading
 from time import sleep
 from datetime import datetime
+import json
 
 class dhtData:
     def __init__(self, temperature, humidity):
         self.__temperature = temperature
         self.__humidity = humidity
+
+    def toJSON(self):
+        return json.dumps({
+            "temperature": self.temperature,
+            "humidity": self.humidity,
+        })
 
     @property
     def temperature(self):
