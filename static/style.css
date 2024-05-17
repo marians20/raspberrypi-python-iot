@@ -24,10 +24,13 @@ html, body {
 
 
 .card_header {
-    text-align: center;
-    background-color: cadetblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(106, 106, 106);
+    color: #fafafa;
     font-weight: 700;
-    height: 2rem;
+    height: 1.5rem;
 }
 
 .card_body {
