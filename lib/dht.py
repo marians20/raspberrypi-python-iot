@@ -1,7 +1,6 @@
 import adafruit_dht
 import threading
 from time import sleep
-from datetime import datetime
 import json
 
 class dhtData:

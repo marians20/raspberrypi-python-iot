@@ -1,9 +1,7 @@
 from time import sleep
 import sys
-import threading
 from dependency_injector.wiring import Provide, inject
 from container import Container
-from flask import Flask, jsonify, Response
 from lib import clock, lcd, dht
 from api import api
 
@@ -24,10 +22,8 @@ def main(
     dht_data = dht.data
     if dht_data.temperature != None:
       lcd.display_string("Temp: {t} C".format(t = dht_data.temperature), 3)
-      print("Temp: {t} C".format(t = dht_data.temperature))
     if dht_data.humidity != None:
       lcd.display_string(" Hum: {h} %".format(h = dht_data.humidity), 4)
-      print(" Hum: {h} %".format(h = dht_data.humidity))
     sleep(2)
 
 if __name__ == "__main__":
