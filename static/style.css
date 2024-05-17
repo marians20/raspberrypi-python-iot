@@ -1,0 +1,26 @@
+html, body {
+    min-height: 100%;
+    background-color: #fafafa;
+}
+
+.container {
+    width: 250px;
+    padding: 5px;
+}
+
+.container, .card {
+    border: 1px solid black;
+    margin: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0,0.2);
+}
+
+
+.card_header {
+    text-align: center;
+    background-color: cadetblue;
+    font-weight: 700;
+}
+
+.card_body {
+    padding: 5px;
+}
