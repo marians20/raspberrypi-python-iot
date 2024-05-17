@@ -1,17 +1,22 @@
 from time import sleep
 import sys
+import threading
 from dependency_injector.wiring import Provide, inject
-
 from container import Container
+from flask import Flask, jsonify, Response
+from lib import clock, lcd, dht
+from api import api
 
 @inject
 def main(
-   lcd = Provide[Container.lcd],
-   dht = Provide[Container.dht],
-   clock = Provide[Container.clock],
+   lcd : lcd = Provide[Container.lcd],
+   dht : dht = Provide[Container.dht],
+   clock : clock = Provide[Container.clock],
+   api: api = Provide[Container.api],
 ) -> None:
   clock.run_async()
   dht.run_async()
+  api.run_async()
 
   while True:
     if not dht.isRunning:
@@ -29,5 +34,4 @@ if __name__ == "__main__":
     container = Container()
     container.init_resources()
     container.wire(modules=[__name__])
-
     main(*sys.argv[1:])
