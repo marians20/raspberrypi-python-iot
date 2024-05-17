@@ -11,7 +11,7 @@ class dhtData:
     @property
     def temperature(self):
         return self.__temperature
-    
+
     @property
     def humidity(self):
         return self.__humidity
@@ -33,14 +33,18 @@ class dht:
     @property
     def data(self):
         return dhtData(self.__temperature, self.__humidity)
-    
+
     @property
     def isRunning(self):
         return self.__thd.is_alive and self.__can_continue
 
+    @property
+    def thread(self):
+        return self.__thd
+
     def __run(self):
-        previousSecond = -1
         while self.__can_continue:
+            sleep(2)
             try:
                 self.__temperature = self.dhtDevice.temperature
                 self.__humidity = self.dhtDevice.humidity
@@ -54,4 +58,3 @@ class dht:
                 self.dhtDevice.exit()
                 self.dhtDevice = adafruit_dht.DHT22(self.__dht_pin)
                 # raise error
-            sleep(2)
