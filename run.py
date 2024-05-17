@@ -7,10 +7,6 @@ from flask import Flask, jsonify, Response
 from lib import clock, lcd, dht
 from api import api
 
-# @inject
-# def get_dht_data(dht : dht = Provide[Container.dht],):
-#     return Response(dht.data.toJSON(), mimetype="application/json")
-
 @inject
 def main(
    lcd : lcd = Provide[Container.lcd],
@@ -21,11 +17,6 @@ def main(
   clock.run_async()
   dht.run_async()
   api.run_async()
-  
-  # app = Flask(__name__)
-  # app.container = container
-  # app.add_url_rule("/dht", "dht", get_dht_data)
-  # threading.Thread(target=app.run, args=()).start()
 
   while True:
     if not dht.isRunning:
